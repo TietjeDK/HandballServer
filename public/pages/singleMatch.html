@@ -1,0 +1,131 @@
+<div class="container">
+        <h1 class="text-center">Kampoversigt</h1>
+        <div class="row">
+            <div class="col-xs-4">
+                <h3 class="text-center">
+                   KH {{findTeam(currentMatch.homeTeamId, teams)}}
+                </h3>
+                <h2 class="text-center score">{{currentMatch.homeTeamScore}}</h2>
+                <div class="button-row">
+                    <button class="btn btn-primary" ng-click="increaseScore(currentMatch._id, 'homeTeam')">+</button>
+                    <button class="btn btn-primary" ng-click="decreaseScore(currentMatch._id, 'homeTeam')">-</button>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                    <h1 class="text-center">{{counter | formatTimer}}</h1>
+                    <div class="button-row">
+                    <button class="btn btn-primary" ng-click="stop()" ng-disabled="!timerRunning">Stop</button>
+                    <button class="btn btn-primary" ng-click="countdown()" ng-disabled="timerRunning">Start</button> 
+                </div>
+            </div>
+            <div class="col-xs-4">
+                    <h3 class="text-center ">
+                        {{currentMatch.awayTeam}}
+                    </h3>
+                    <h2 class="text-center score">{{currentMatch.awayTeamScore}}</h2>
+                    <div class="button-row">
+                        <button class="btn btn-primary" ng-click="increaseScore(currentMatch._id, 'awayTeam')">+</button>
+                        <button class="btn btn-primary" ng-click="decreaseScore(currentMatch._id, 'awayTeam')">-</button>
+                    </div>
+                </div>
+        </div>
+        <hr>
+
+        </div>
+
+        <div class="button-row">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+       Tilføj spillere til kampen
+      </button>
+      <button type="button" class="btn btn-primary" ng-if="!currentMatch.vote" ng-click="voteStatus(true)">
+            Åben for afstemning
+           </button>
+           <button type="button" class="btn btn-primary" ng-if="currentMatch.vote"  ng-click="voteStatus(false)">
+                Luk for afstemning
+            </button>
+            <button type="button" class="btn btn-primary" ng-if="!currentMatch.live" ng-click="live(true)">
+                    Send til skærm
+                   </button>
+                   <button type="button" class="btn btn-primary" ng-if="currentMatch.live"  ng-click="live(false)">
+                    Fjern fra skærm
+                    </button>
+     </div>
+     <div class="row">
+            <div class="col-xs-12">
+                    <div class="container">
+                            <table class="table">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Navn</th>
+                                        <th>Position</th>
+                                        <th>Mål</th>
+                                        <th>Redninger</th>
+                                        <th>Fjern</th>
+                                        <th>Stemmer</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in currentMatch.players">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.position}}</td>
+                                        <td>
+                                                {{item.goals}}
+                                            <button class="btn btn-primary" ng-click="addGoal($index)">+</button>
+                                            <button class="btn btn-primary" ng-click="removeGoal($index)">-</button>
+                                        </td>
+                                        <td>
+                                                {{item.saves}}
+                                                <button class="btn btn-primary" ng-click="addSave($index)">+</button>
+                                                <button class="btn btn-primary" ng-click="removeSave($index)">-</button>
+                                            </td>
+                                            <td>
+                                                    <button class="btn btn-primary" ng-click="removePlayers($index)">Fjern</button>
+                                            </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+            </div>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Tilføj spillere til kampen</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="row">
+                            <div class="col-xs-12">
+                                    <div class="container">
+                                            <table class="table">
+                                                    <thead>
+                                                    <tr>
+                
+                                                        <th>Navn</th>
+                                                        <th>Position</th>
+                                                        <th>Tilføj</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr ng-repeat="item in players" ng-if="!isAdded(item)">
+                                                        <td>{{item.name}}</td>
+                                                        <td>{{item.position}}</td>
+                                                        <td><button class="btn btn-primary" ng-click="addPlayers(item)">Tilføj til kampen</button></td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                            </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Luk</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    

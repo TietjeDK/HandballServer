@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Opret nyt hold</h1>
+    <form>
+    <div class="form-group">
+            <label>Række</label>
+            <input type="text" class="form-control" name="name" ng-model="teamData.division">
+        </div>
+
+    <div class="form-group">
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="Herrer" ng-model="teamData.gender">
+                    Herre
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="gender" value="Damer" ng-model="teamData.gender">
+                    Damer
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="button" class="btn btn-warning" ng-click="reset()" value="Nulstil" />
+            <input type="submit" class="btn btn-success" ng-click="createTeam(teamData)" value="Opret" />
+        </div>
+    </form>
+</div> 

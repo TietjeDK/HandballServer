@@ -1,0 +1,31 @@
+<div class="container">
+        <h1>Kampoversigt</h1>
+        <a href="#createMatch"><button class="btn btn-primary" ng-disabled="timerRunning">Opret ny kamp</button></a>
+        <table class="table">
+                <thead>
+                <tr>
+                    <th>Hold</th>
+                    <th>Modstander</th>
+                    <th>Stilling</th>
+                    <th>Dato</th>
+                    <th>Kampstatus</th>
+                    <th>Handling</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in matches">
+                    <td>{{findTeam(item.homeTeamId, teams)}}</td>
+                    <td>{{item.awayTeam}}</td>
+                    <td>{{item.homeTeamScore}} - {{item.awayTeamScore}}</td>
+                    <td>{{item.date}}</td>
+                    <td>{{item.status}}</td>
+                    <td>
+                        <a href="#matches/{{item._id}}"><button class="btn btn-primary">Gå til kampen</button></a>
+                        <button class="btn btn-primary" ng-click="deleteMatch(item._id)">Slet kamp</button>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+    </div>

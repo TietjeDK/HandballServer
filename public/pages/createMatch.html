@@ -1,0 +1,38 @@
+<div class="container">
+        <h1>Opret nyt kamp</h1>
+        <form>
+                <div class="form-group">
+                        <label>Hjemmehold</label>
+                        <br />
+                        <select name="position" ng-model="match.item">
+                                <option ng-repeat="item in teams" value="{{item}}">{{item.division}} {{item.gender}}</option>
+                              </select>
+                    </div>
+            <div class="form-group">
+                <label>Udehold</label>
+                <input type="text" class="form-control" name="name" ng-model="match.awayTeam">
+            </div>
+                
+            <div class="form-group">
+                    <label>Dato</label>
+                    <input id="date" type="date" ng-model="match.date">
+                </div>
+                <div class="form-group">
+                        <label>Optakt</label>
+                        <textarea class="form-control" ng-model="match.description"></textarea>
+                </div>
+                <div class="form-group">
+                        <label>Kampsponsor</label>
+                        <input type="text" class="form-control" name="name" ng-model="match.sponsor">
+                    </div>
+                    <div class="form-group">
+                            <label>Sponsorbanner</label>
+                            <input type="text" class="form-control" name="name" ng-model="match.sponsorImg">
+                        </div>
+
+            <div class="form-group">
+                <input type="button" class="btn btn-warning" ng-click="reset()" value="Nulstil" />
+                <input type="submit" class="btn btn-success" ng-click="createMatch(match)" value="Opret" />
+            </div>
+        </form>
+    </div> 

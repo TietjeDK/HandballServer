@@ -1,0 +1,45 @@
+<div class="container">
+        <h1>Opret nyt spiller</h1>
+        <form>
+        <div class="form-group">
+                <label>Navn</label>
+                <input type="text" class="form-control" name="name" ng-model="player.name">
+            </div>
+            <div class="form-group">
+                        <label>Billede</label>
+                        <input type="text" class="form-control" name="name" ng-model="player.img" placeholder="Indtast url til billede">
+                    </div>
+            <div class="form-group">
+                    <label>Position</label>
+                    <br />
+                    <select name="position" ng-model="player.position">
+                            <option value="Målmand">Målmand</option>
+                            <option value="Streg">Streg</option>
+                            <option value="Venstre Back">Venstre Back</option>
+                            <option value="Playmaker">Playmaker</option>
+                            <option value="Højre Back">Højre Back</option>
+                            <option value="Højre Fløj">Højre Fløj</option>
+                            <option value="Venstre Fløj">Venstre Fløj</option>
+                            <option value="Træner">Træner</option>
+                          </select>
+                </div>
+    
+                <div class="form-group">
+                        <label>Hold</label>
+                        <br />
+                        <select name="position" ng-model="player.team_id">
+                                <option ng-repeat="item in teams" value="{{item._id}}">{{item.division}} {{item.gender}}</option>
+                              </select>
+                    </div>
+                    <div class="form-group">
+                                <label>Beskrivelse</label>
+                                <textarea class="form-control" ng-model="player.description"></textarea>
+                        </div>
+
+
+            <div class="form-group">
+                <input type="button" class="btn btn-warning" ng-click="reset()" value="Nulstil" />
+                <input type="submit" class="btn btn-success" ng-click="createPlayer(player)" value="Opret" />
+            </div>
+        </form>
+    </div> 

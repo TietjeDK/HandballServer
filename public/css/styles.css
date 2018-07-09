@@ -1,0 +1,78 @@
+/* Fonts */
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Quicksand', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500,700');
+/* General */
+#main {
+    min-height: 800px;
+}
+.button-row {
+    text-align: center;
+}
+/* Navbar */
+.nav-logo {
+    width: 50px;
+    transform: rotate(90 degress);
+}
+/* Modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    background-color: #000;
+}
+
+/* Single Match */
+
+.score {
+    font-size: 80px;
+
+}
+
+/* Livescore */
+.main-logo{
+    display: block;
+    margin: 0 auto;
+    width: 50px;
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+.score-wrapper {
+    height: 100vh;
+    background-image: url(../img/livebg.jpg);
+    background-size: cover;
+}
+.team-wrapper {
+    padding: 10px;
+}
+.team-wrapper h2{
+    color: #fff;
+    height: 50px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.team-wrapper h1{
+    color: #fff;
+    font-size: 80px;
+    height: 50px;
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.sponsor-img-wrapper h3{
+    text-align: center;
+    font-family: 'Ubuntu', sans-serif;
+}
+.sponsor-wrapper img{
+    display: block;
+    margin: 0 auto;
+}
+.sponsor-img-wrapper {
+    padding: 10px;
+    background-color: #fff;
+}

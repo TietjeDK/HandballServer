@@ -1,0 +1,23 @@
+<div class="container">
+        <h1>Spilleroversigt</h1>
+        <a href="#createPlayer"><button class="btn btn-primary" ng-disabled="timerRunning">Opret ny spiller</button></a>
+        <table class="table">
+                <thead>
+                <tr>
+
+                    <th>Navn</th>
+                    <th>Position</th>
+                    <th>Fjern</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in players">
+
+                    <td><a href="#players/{{item._id}}">{{item.name}}</a></td>
+                    <td>{{item.position}}</td>
+                    <td> <button class="btn btn-primary" ng-click="deletePlayer(item._id)">Fjern spiller</button></td>
+                </tr>
+                </tbody>
+            </table>
+    </div>

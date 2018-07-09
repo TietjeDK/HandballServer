@@ -1,0 +1,23 @@
+<div class="container">
+    <h1>Holdoversigt</h1>
+    <table class="table">
+            <thead>
+            <tr>
+                <th>Række</th>
+                <th>Køn</th>
+                <th>ID</th>
+                <th>Spillere</th>
+                <th>Opdater</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in teams">
+                <td>{{item.division}}</td>
+                <td>{{item.gender}}</td>
+                <td>{{item._id}}</td>
+                <td><a href="#teams/{{item._id}}/players"><button class="btn btn-primary">Se spillere</button></a></td>
+                <td><a href="#"><button class="btn btn-primary">Opdater</button></a></td>
+            </tr>
+            </tbody>
+        </table>
+</div>

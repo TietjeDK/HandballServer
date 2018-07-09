@@ -1,0 +1,44 @@
+<div class="container">
+        <h1>Opdater spiller</h1>
+        <form>
+        <div class="form-group">
+                <label>Navn</label>
+                <input type="text" class="form-control" name="name" ng-model="currentPlayer.name">
+            </div>
+            <div class="form-group">
+                        <label>Billede</label>
+                        <input type="text" class="form-control" name="name" ng-model="currentPlayer.img" placeholder="Indtast url til billede">
+                    </div>
+            <div class="form-group">
+                    <label>Position</label>
+                    <br />
+                    <select name="position" ng-model="currentPlayer.position">
+                            <option value="Målmand">Målmand</option>
+                            <option value="Streg">Streg</option>
+                            <option value="Venstre Back">Venstre Back</option>
+                            <option value="Playmaker">Playmaker</option>
+                            <option value="Højre Back">Højre Back</option>
+                            <option value="Højre Fløj">Højre Fløj</option>
+                            <option value="Venstre Fløj">Venstre Fløj</option>
+                            <option value="Træner">Træner</option>
+                          </select>
+                </div>
+    
+                <div class="form-group">
+                        <label>Hold</label>
+                        <br />
+                        <select name="position" ng-model="currentPlayer.team_id">
+                                <option ng-repeat="item in teams" value="{{item._id}}">{{item.division}} {{item.gender}}</option>
+                              </select>
+                    </div>
+                    <div class="form-group">
+                                <label>Beskrivelse</label>
+                                <textarea class="form-control" ng-model="currentPlayer.description"></textarea>
+                        </div>
+
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" ng-click="updatePlayer(currentPlayer)" value="Opdater" />
+            </div>
+        </form>
+    </div> 

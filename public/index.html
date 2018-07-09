@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- SPELLS -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js" integrity="sha384-jspctxrQmizRroXAKjoWWOOhkG3aZesspL7dmISSX5+p1LfXftbGQocYmzOsv9wx" crossorigin="anonymous"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="js/app.js"></script>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default" ng-if="!hideNavbar">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/"><img class="nav-logo" src="/img/x.png" /></a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-home"></i> Hjem</a></li>
+        <li><a href="#teams"><i class="fa fa-shield"></i> Hold</a></li>
+        <li><a href="#players"><i class="fa fa-comment"></i> Spillere</a></li>
+        <li><a href="#matches"><i class="fa fa-comment"></i> Kampe</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+  
+    <!-- angular templating -->
+		<!-- this is where content will be injected -->
+    <div ng-view></div>
+    
+  </div>
+  
+  <footer class="text-center">
+    <p>Udviklet af Karsten Tietje</p>
+  </footer>
+  
+</body>
+
+</html>
