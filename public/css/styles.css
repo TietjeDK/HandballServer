@@ -1,8 +1,8 @@
 /* Fonts */
-@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500,700');
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:400,500,700');
 /* General */
@@ -12,10 +12,34 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .button-row {
     text-align: center;
 }
+.jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+    background-color: #13408a;
+    color: #fff;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #08317d;
+    border-color: #357ebd;
+}
 /* Navbar */
 .nav-logo {
-    width: 50px;
+    width: 100px;
     transform: rotate(90 degress);
+}
+.navbar-default {
+    border-color: #bd1b29;
+    background-color: #d2212f;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #08317c;
+    background-color: transparent;
 }
 /* Modal */
 .modal-backdrop {
@@ -26,6 +50,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     left: 0;
     z-index: 0;
     background-color: #000;
+}
+
+/* Frontpage */
+.front-box {
+    padding: 10px;
+    text-align: center;
+}
+.front-box img {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 100px;
 }
 
 /* Single Match */
@@ -76,3 +112,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     padding: 10px;
     background-color: #fff;
 }
+
+/* Players */
+img.player-img {
+    width: 100px;
+}
+

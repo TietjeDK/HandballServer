@@ -331,6 +331,90 @@ app.put('/matches/:id/update', function(req, res) {
 
 
 });
+// Create vote
+app.post('/vote', function(req, res) {
+
+    /*
+    {
+        match_id: match_id,
+        player_id: match_id,
+        name: name,
+        phone: phone,
+        email: email,
+    }
+    */
+    // Create connection to MongoDB
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("handball");
+        dbo.collection("Votes").insertOne(req.body, function(error, result) {
+          if (err) throw err;
+          console.log("Vote created");
+          res.send(result);
+          db.close();
+    
+        });
+      }); 
+
+
+});
+// Find all votes
+app.get('/vote', function(req, res) {
+
+  
+    // Create connection to MongoDB
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("handball");
+        dbo.collection("Votes").find({}).toArray(function(error, result) {
+          if (err) throw err;
+          console.log(result);
+          res.send(result);
+          db.close();
+        });
+      });
+
+
+});
+// Find votes for one match
+app.get('/vote/match/:id', function(req, res) {
+
+  
+    var matchId = req.params.id;
+    // Create connection to MongoDB
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("handball");
+        dbo.collection("Votes").find({match_id:matchId}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.send(result);
+            db.close();
+          });
+        
+      });
+
+});
+// Find votes for one match and player
+app.get('/vote/match/:id/player/:playerId', function(req, res) {
+
+  
+    var matchId = req.params.id;
+    var playerId = req.params.playerId;
+    // Create connection to MongoDB
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("handball");
+        dbo.collection("Votes").find({match_id:matchId, player_id: playerId}).toArray(function(err, result) {
+            if (err) throw err;
+            console.log(result);
+            res.send(result);
+            db.close();
+          });
+        
+      });
+
+});
 // Update single match with player votes
 app.put('/matches/:id/update/votes', function(req, res) {
 

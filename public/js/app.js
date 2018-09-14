@@ -68,6 +68,11 @@
 			.when('/matches/:id', {
 				templateUrl : './pages/singleMatch.html',
 				controller  : 'matchCtrl'
+            })
+            // route for the about page
+			.when('/matches/:id/votes', {
+				templateUrl : './pages/votes.html',
+				controller  : 'matchCtrl'
 			})
             .when('/createMatch', {
 				templateUrl : './pages/createMatch.html',
@@ -94,7 +99,7 @@
             // Get all teams
             $http({
                 method: "GET",
-                url: "http://178.62.243.55:9113/teams",
+                url: "http://localhost:9113/teams",
                 headers: {
                 "Accept": "application/json;odata=verbose"
                 }
@@ -107,7 +112,7 @@
                 // Get all players for one team
                 $http({
                     method: "GET",
-                    url: "http://178.62.243.55:9113/teams/players/" + teamId,
+                    url: "http://localhost:9113/teams/players/" + teamId,
                     headers: {
                     "Accept": "application/json;odata=verbose"
                     }
@@ -129,7 +134,7 @@
 
                 $http({
                     method: "POST",
-                    url: "http://178.62.243.55:9113/teams/create",
+                    url: "http://localhost:9113/teams/create",
                     data: data,
                     headers: {
                     "Accept": "application/json;odata=verbose"
@@ -150,7 +155,7 @@
         // Get all teams
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/teams",
+            url: "http://localhost:9113/teams",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -163,7 +168,7 @@
         // Get all players
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/players",
+            url: "http://localhost:9113/players",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -178,7 +183,7 @@
             // Get one player
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/players/" + playerId,
+            url: "http://localhost:9113/players/" + playerId,
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -205,7 +210,7 @@
                 data.matches = 0;
             $http({
                 method: "POST",
-                url: "http://178.62.243.55:9113/players/create",
+                url: "http://localhost:9113/players/create",
                 data: data,
                 headers: {
                 "Accept": "application/json;odata=verbose"
@@ -220,7 +225,7 @@
         
         $http({
             method: "PUT",
-            url: "http://178.62.243.55:9113/players/" + data._id + "/updateData",
+            url: "http://localhost:9113/players/" + data._id + "/updateData",
             data: data,
             headers: {
             "Accept": "application/json;odata=verbose"
@@ -233,7 +238,7 @@
         $scope.deletePlayer = function(id){
             $http({
                method: "DELETE",
-               url: "http://178.62.243.55:9113/players/" + id + "/delete",
+               url: "http://localhost:9113/players/" + id + "/delete",
                headers: {
                "Accept": "application/json;odata=verbose"
                }
@@ -243,13 +248,17 @@
        }
     });
     
-    scotchApp.controller('matchCtrl', function($scope, $http, $routeParams, $timeout, $location) {
+    scotchApp.controller('matchCtrl', function($scope, $http, $routeParams, $timeout, $location, $interval) {
         
+        $scope.goToVotes = function(){
+            $location.path('/matches/' + $routeParams.id + '/votes')
+        }
+
         var matchId = $routeParams.id;
         // Get all matches
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/matches",
+            url: "http://localhost:9113/matches",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -262,7 +271,7 @@
             // Get single match
             $http({
                 method: "GET",
-                url: "http://178.62.243.55:9113/matches/" + matchId,
+                url: "http://localhost:9113/matches/" + matchId,
                 headers: {
                 "Accept": "application/json;odata=verbose"
                 }
@@ -270,7 +279,9 @@
 
                 $scope.currentMatch = response.data;
                 $scope.counter = $scope.currentMatch.time;
-                
+           
+                    
+
             });
             }
 
@@ -278,7 +289,7 @@
         // Get all teams
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/teams",
+            url: "http://localhost:9113/teams",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -294,7 +305,7 @@
         // Get all players
         $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/players",
+            url: "http://localhost:9113/players",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -308,7 +319,7 @@
             $scope.currentMatch.vote = value;
             $http({
                 method: "PUT",
-                url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                 data: $scope.currentMatch,
                 headers: {
                 "Accept": "application/json;odata=verbose"
@@ -323,13 +334,15 @@
             $scope.currentMatch.live = value;
             $http({
                 method: "PUT",
-                url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                 data: $scope.currentMatch,
                 headers: {
                 "Accept": "application/json;odata=verbose"
                 }
             }).then(function (response){
                 console.log(response);
+                
+
             });
         }
 
@@ -350,7 +363,7 @@
             console.log(data);
             $http({
                 method: "POST",
-                url: "http://178.62.243.55:9113/matches/create",
+                url: "http://localhost:9113/matches/create",
                 data: data,
                 headers: {
                 "Accept": "application/json;odata=verbose"
@@ -369,7 +382,7 @@
             
             $http({
                 method: "PUT",
-                url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                 data: $scope.currentMatch,
                 headers: {
                 "Accept": "application/json;odata=verbose"
@@ -386,7 +399,7 @@
             
             $http({
                 method: "PUT",
-                url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                 data: $scope.currentMatch,
                 headers: {
                 "Accept": "application/json;odata=verbose"
@@ -402,7 +415,7 @@
             $scope.currentMatch.players[index].goals++ 
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -421,7 +434,7 @@
             $scope.currentMatch.players[index].goals-- 
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -439,7 +452,7 @@
             $scope.currentMatch.players[index].saves++ 
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -456,7 +469,7 @@
             $scope.currentMatch.players[index].saves-- 
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -476,7 +489,7 @@
                     $scope.currentMatch.homeTeamScore++;
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -490,7 +503,7 @@
                     $scope.currentMatch.awayTeamScore++;
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -510,7 +523,7 @@
                     $scope.currentMatch.homeTeamScore--;
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -525,7 +538,7 @@
                     $scope.currentMatch.awayTeamScore--;
                     $http({
                         method: "PUT",
-                        url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+                        url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
                         data: $scope.currentMatch,
                         headers: {
                         "Accept": "application/json;odata=verbose"
@@ -583,7 +596,7 @@
         $scope.currentMatch.time = $scope.counter;
         $http({
             method: "PUT",
-            url: "http://178.62.243.55:9113/matches/" +$scope.currentMatch._id + "/update",
+            url: "http://localhost:9113/matches/" +$scope.currentMatch._id + "/update",
             data: $scope.currentMatch,
             headers: {
             "Accept": "application/json;odata=verbose"
@@ -606,7 +619,7 @@
          // Get single match
          $http({
             method: "DELETE",
-            url: "http://178.62.243.55:9113/matches/" + id + "/delete",
+            url: "http://localhost:9113/matches/" + id + "/delete",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
@@ -614,6 +627,42 @@
             console.log(response.data);
         });
     }
+
+    $scope.getWinner = function(){
+        var winnerArray = [];
+        for (let i = 0; i < $scope.currentMatch.players.length; i++) {
+            console.log($scope.currentMatch.players[i].vote.length);
+            winnerArray.push({"name" : $scope.currentMatch.players[i].name, "number": $scope.currentMatch.players[i].vote.length, "votes": $scope.currentMatch.players[i].vote})
+        }
+        winnerArray.sort(function(a, b) {
+            return parseFloat(b.votes.length) - parseFloat(a.votes.length);
+        });;
+
+         var rand = winnerArray[0].votes[Math.floor(Math.random() * winnerArray[0].votes.length)];
+         $scope.winner = rand;
+         $scope.currentMatch.priceWinner = rand;
+    }
+    // Get votes
+    $interval(function() {
+    if(matchId){
+        for (let i = 0; i < $scope.currentMatch.players.length; i++) {
+            const player =  $scope.currentMatch.players[i];
+            $http({
+                method: "GET",
+                url: "http://localhost:9113/vote/match/" + $scope.currentMatch._id + "/player/" + player._id,
+                headers: {
+                "Accept": "application/json;odata=verbose"
+                }
+            }).then(function (response){
+                
+                $scope.currentMatch.players[i].vote = response.data;
+            });
+        }
+        console.log($scope.currentMatch.players)
+     
+    
+    }
+    }, 10000);
 
 
     });
@@ -624,7 +673,7 @@
          // Get match
          $http({
             method: "GET",
-            url: "http://178.62.243.55:9113/matches/live",
+            url: "http://localhost:9113/matches/live",
             headers: {
             "Accept": "application/json;odata=verbose"
             }
