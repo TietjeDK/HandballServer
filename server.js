@@ -376,6 +376,15 @@ app.get('/vote', function(req, res) {
 
 
 });
+
+// TEST
+app.get('/votes', function(req, res) {
+
+res.send("Votes");
+
+
+});
+
 // Find votes for one match
 app.get('/vote/match/:id', function(req, res) {
 
