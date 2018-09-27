@@ -524,6 +524,8 @@ app.post('/users/login', function(req, res) {
     
 })
 
+// this is new
+
 // Start server
 app.listen(port);
 console.log("Handball API is running on port " + port); 
